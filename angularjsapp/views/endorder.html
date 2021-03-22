@@ -1,0 +1,84 @@
+<div ng-controller="totalOrderCtrl" class="col-md-4 mx-auto card" style="margin: 15px;">
+    <form name="orderForm" novalidate>
+        <div class="container">
+            <h4 class="mb-3">Dostawa</h4>
+            <label>Sposób realizacji</label>
+            <div class="mb-3 checkbox">
+                <label>
+                    <input name="shipping" type="checkbox" ng-model="data.order.shipping" 
+                    ng-required="!(data.order.shipping || data.order.local)" ng-click="data.order.local = false" />
+                    Dostawa
+                </label>
+                <p>
+                    <label>
+                        <input name="local" type="checkbox" ng-model="data.order.local" ng-click="data.order.shipping = false" />
+                        Odbiór własny
+                    </label>
+            </div>
+            <label>Sposób zapłaty</label>
+            <div class="mb-3 checkbox">
+                <label>
+                    <input name="cash" type="checkbox" ng-model="data.order.cash" ng-click="data.order.card = false"
+                    ng-required="!(data.order.cash || data.order.card)" />
+                    Gotówka
+                </label>
+                <p>
+                    <label>
+                        <input name="card" type="checkbox" ng-model="data.order.card" ng-click="data.order.cash = false" />
+                        Karta przy odbiorze
+                    </label>
+            </div>
+            <hr>
+            <h4 class="mb-3">Dane adresowe</h4>
+            <div class="mb-3">
+                <label>Imię i nazwisko</label>
+                <input name="name" class="form-control" ng-model="data.order.name" required />
+                <span class="error" ng-show="orderForm.name.$error.required">
+                    Proszę podać imię i nazwisko.
+                </span>
+            </div>
+            <div class="mb-3">
+                <label>Telefon</label>
+                <input name="phone" class="form-control" ng-model="data.order.phone" required />
+                <span class="error" ng-show="orderForm.phone.$error.required">
+                    Proszę podać numer telefonu.
+                </span>
+            </div>
+            <div class="mb-3">
+                <label>Email</label>
+                <input name="email" class="form-control" ng-model="data.order.email" required />
+                <span class="error" ng-show="orderForm.email.$error.required">
+                    Proszę podać adres e-mail.
+                </span>
+            </div>
+            <div class="row" ng-show="data.order.shipping">
+                <div class="col-md-6 mb-3">
+                    <label>Ulica</label>
+                    <input name="street" class="form-control" ng-model="data.order.street" ng-required="data.order.shipping" />
+                    <span class="error" ng-show="orderForm.street.$error.required">
+                        Proszę podać nazwę ulicy.
+                    </span>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label>Nr domu</label>
+                    <input name="house" class="form-control" ng-model="data.order.house" ng-required="data.order.shipping" />
+                    <span class="error" ng-show="orderForm.house.$error.required">
+                        Proszę podać numer domu.
+                    </span>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label>Nr lokalu</label>
+                    <input name="apartment" class="form-control" ng-model="data.order.apartment" />
+                </div>
+            </div>
+            <hr>
+            <div class="mb-3">
+                <strong>Do zapłaty: {{sum() | currency }}</strong>
+            </div>
+            <hr>
+            <div class="text-center mb-3">
+                <button ng-disabled="orderForm.$invalid" ng-click="send(data.order)" class="btn btn-warning">Zakończ zamówienie</button>
+            </div>
+        </div>
+    </form>
+</div>

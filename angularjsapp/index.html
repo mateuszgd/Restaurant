@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html ng-app="pizzeria">
+
+<head>
+    <title>Pizzeria</title>
+    <script src="angular.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="/content/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script>
+        angular.module("pizzeria", ["cart", "ngRoute"])
+            .config(function ($routeProvider) {
+                $routeProvider.when("/done", {
+                    templateUrl: "/views/done.html"
+                });
+
+                $routeProvider.when("/endorder", {
+                    templateUrl: "/views/endorder.html"
+                });
+
+                $routeProvider.when("/order", {
+                    templateUrl: "/views/order.html"
+                });
+
+                $routeProvider.when("/menu", {
+                    templateUrl: "/views/listPizza.html"
+                });
+
+                $routeProvider.otherwise({
+                    templateUrl: "/views/listPizza.html"
+                });
+            });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="controllers/pizzeria.js"></script>
+    <script src="controllers/listPizzaController.js"></script>
+    <script src="https://code.angularjs.org/1.2.22/i18n/angular-locale_pl-pl.js"></script>
+    <script src="components/cart/cart.js"></script>
+    <script src="ngmodules/angular-route.js"></script>
+    <script src="controllers/orderController.js"></script>
+</head>
+
+<body ng-controller="pizzeriaCtrl">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="img/logopizzeria.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+            Pizzeria
+        </a>
+        <div class="collapse navbar-collapse">
+            <div class="navbar-nav ml-auto">
+                <cart-navbar />
+            </div>
+        </div>
+    </nav>
+
+    <div class="alert alert-danger" ng-show="data.error">
+        Błąd ({{data.error.status}}).
+        <a href="/index.html" class="alert-link">Kliknij tutaj, aby spróbować ponownie wczytać dane</a>
+    </div>
+
+    <ng-view></ng-view>
+    
+    <footer>
+        <div class="row text-center">
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-4">
+                <p class="text-light copy">
+                    Copyright © 2021
+                    <a href="#" style="color:white"> Pizzeria</a>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <a class="" href="#"><img src="img/logopizzeria.jpg" width="100" height="100" alt="" />
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

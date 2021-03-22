@@ -1,0 +1,47 @@
+<div ng-controller="adminProductCtrl">
+    <table class="table table-bordered table-striped" style="margin-top: -1px;">
+        <tr>
+            <th>Nazwa</th>
+            <th>Składniki</th>
+            <th>Cena za średnią</th>
+            <th>Cena za dużą</th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="pizza in products" ng-hide="pizza.id == productEdit.id">
+            <td>{{pizza.name}}</td>
+            <td>{{pizza.description}}</td>
+            <td>{{pizza.priceM | currency}}</td>
+            <td>{{pizza.priceL | currency }}</td>
+            <td class="text-center">
+                <button class="btn btn-sm btn-primary" ng-click="edit(pizza)">
+                    <i class="fa fa-edit"></i>
+                </button>
+                <button class="btn btn-sm btn-primary" ng-click="delete(pizza)">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </td>
+        </tr>
+        <tr ng-hide="value || productEdit">
+            <td colspan="5" class="text-left">
+                <button class="btn btn-sm btn-success" ng-click="addProduct()">Utwórz nowy produkt</button>
+            </td>
+        </tr>
+        <tr ng-show="value || productEdit.id">
+            <td><input ng-model="productEdit.name" /></td>
+            <td><input ng-model="productEdit.description" /></td>
+            <td><input ng-model="productEdit.priceM" /></td>
+            <td><input ng-model="productEdit.priceL" /></td>
+            <td class="text-center">
+                <button class="btn btn-sm btn-primary" ng-hide="productEdit.id" ng-click="create(productEdit)">
+                    <i class="fa fa-plus"></i>
+                </button>
+                <button class="btn btn-sm btn-primary" ng-show="productEdit.id" ng-click="update(productEdit)">
+                    <i class="fa fa-floppy-o"></i>
+                </button>
+                <button class="btn btn-sm btn-primary" ng-show="productEdit" ng-click="cancel()">
+                    <i class="fa fa-times"></i>
+                </button>
+            </td>
+        </tr>
+    </table>
+</div>

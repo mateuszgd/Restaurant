@@ -1,0 +1,37 @@
+<h2 class="text-center">Twoje zamówienie</h2>
+<div ng-controller="totalOrderCtrl">
+    <div class="alert alert-danger" ng-show="cartTab.length == 0">
+        Jeszcze nic nie zamówiłeś.
+        <a href="#/menu" class="alert-link">Kliknij tutaj, aby przejść do menu</a>
+    </div>
+    <div ng-hide="cartTab.length == 0">
+        <table class="table">
+            <thead>
+                <th>Ilość</th>
+                <th></th>
+                <th class="text-right">Cena</th>
+                <th class="text-right"></th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="pizza in cartTab">
+                    <td>{{pizza.count}}</td>
+                    <td>{{pizza.name}}</td>
+                    <td class="text-right">{{pizza.price * pizza.count | currency }}</td>
+                    <td class="text-right">
+                        <button ng-click="remove(pizza.id)" class="btn btn-warning">Usuń</button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="text-center"><strong>Wartość zamówienia: {{sum() | currency }}</strong></td>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="text-center">
+            <a class="btn btn-warning" href="#/menu">Kontynuuj zamówienie</a>
+            <a class="btn btn-secondary" href="#/endorder">Zapłać</a>
+        </div>
+        <hr>
+    </div>
+</div>

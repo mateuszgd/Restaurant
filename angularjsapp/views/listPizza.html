@@ -1,0 +1,31 @@
+<div class="container" ng-controller="listPizzaCtrl" ng-hide="data.error">
+    <table class="table">
+        <thead>
+            <th></th>
+            <th class="text-right">średnia: 26 cm</th>
+            <th class="text-right">duża: 32 cm</th>
+            <th></th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="pizza in data.products">
+                <td class="text-left">
+                    <h4>{{pizza.name}}</h4>
+                    <div>{{pizza.description}}</div>
+                </td>
+                <td class="text-right">{{pizza.priceM | currency }}</td>
+                <td class="text-right">{{pizza.priceL | currency }}</td>
+                <td class="text-right">
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+                            Zamów
+                        </button>
+                        <div class="dropdown-menu">
+                            <a ng-click="addMedium(pizza)" class="dropdown-item" href="#">Średnia pizza</a>
+                            <a ng-click="addLarge(pizza)" class="dropdown-item" href="#">Duża pizza</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

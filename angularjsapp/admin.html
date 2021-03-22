@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="adminPizzeria">
+
+<head>
+    <title>Panel administracyjny</title>
+    <script src="angular.js"></script>
+    <script src="ngmodules/angular-route.js"></script>
+    <script src="ngmodules/angular-resource.js"></script>
+    <script src="https://code.angularjs.org/1.2.22/i18n/angular-locale_pl-pl.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="/content/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script>
+        angular.module("adminPizzeria", ["ngRoute", "ngResource"])
+            .config(function ($routeProvider) {
+                $routeProvider.when("/scp", {
+                    templateUrl: "/views/loginPanel.html"
+                });
+                $routeProvider.when("/mda", {
+                    templateUrl: "/views/adminPanel.html"
+                });
+                $routeProvider.otherwise({
+                    redirectTo: "/scp"
+                });
+            });
+    </script>
+    <script src="controllers/adminController.js"></script>
+    <script src="controllers/productController.js"></script>
+</head>
+
+<body>
+    <ng-view />
+</body>
+
+</html>

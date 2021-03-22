@@ -1,0 +1,9 @@
+<div ng-controller="panelCtrl">
+    <ul class="nav nav-tabs">
+        <li class="nav-item" ng-repeat="pizza in tab">
+            <a ng-click="tabSet($index)" class="nav-link" ng-class="{'active': pizza == selected }" href="">{{pizza}}</a>
+        </li>
+    </ul>
+    
+    <div ng-include="tabGet()"></div>
+</div>
